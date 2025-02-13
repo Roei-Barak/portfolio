@@ -41,8 +41,26 @@ export const education = [
 ];
 
 export const skills = {
-  programming: ["C/C++", "Python", "Java", "PowerShell"],
-  virtualization: ["VMware", "VirtualBox", "Hyper-V"],
-  operatingSystems: ["Kali Linux", "Windows Server"],
-  other: ["GitHub", "Docker", "Kali Linux tools", "Ethical Hacking", "Microsoft Server Configuration"]
+  programming: [
+    { name: "C/C++", icon: "Code2" },
+    { name: "Python", icon: "FileCode" },
+    { name: "Java", icon: "Coffee" },
+    { name: "PowerShell", icon: "Terminal" }
+  ],
+  virtualization: [
+    { name: "VMware", icon: "Layers" },
+    { name: "VirtualBox", icon: "Box" },
+    { name: "Hyper-V", icon: "Server" }
+  ],
+  operatingSystems: [
+    { name: "Kali Linux", icon: "Terminal2" },
+    { name: "Windows Server", icon: "Monitor" }
+  ],
+  other: [
+    { name: "GitHub", icon: "Github" },
+    { name: "Docker", icon: "Container" },
+    { name: "Kali Linux tools", icon: "Shield" },
+    { name: "Ethical Hacking", icon: "Webhook" },
+    { name: "Microsoft Server Configuration", icon: "Settings" }
+  ]
 };

@@ -12,10 +12,13 @@
 html {
   scroll-behavior: smooth;
   background-color: var(--dark-cyber);
+  height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   @apply bg-[#0a0f18] text-white;
+  height: 100%;
 }
 
 .cyber-gradient {
@@ -64,4 +67,28 @@ body {
 
 .space-y-screen > * + * {
   margin-top: 100vh;
+}
+
+/* Parallax Scrolling */
+.parallax-container {
+  perspective: 1px;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Hexagonal Grid Background */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--arg-from), var(--arg-to));
+}
+
+/* Hexagon Hover Animation */
+@keyframes hexPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hexagon-pulse {
+  animation: hexPulse 2s infinite;
 }

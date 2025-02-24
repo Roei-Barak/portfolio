@@ -1,25 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './components/Header';
 import Introduction from './components/Introduction';
+import Timeline from './components/Timeline';
 import Projects from './components/Projects';
 import Resume from './components/Resume';
+import Riddles from './components/Riddles';
 import AudioPlayer from './components/AudioPlayer';
 import MatrixBackground from './components/MatrixBackground';
 import WelcomeScreen from './components/WelcomeScreen';
-const { exec } = require('child_process');
 
 const App: React.FC = () => {
-  useEffect(() => {
-    exec('/var/www/portfolio/scripts/log_ips.sh', (error: any, stdout: string, stderr: string) => {
-      if (error) {
-        console.error(`exec error: ${error}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-      console.error(`stderr: ${stderr}`);
-    });
-  }, []);
-
   return (
     <>
       <WelcomeScreen />
@@ -27,7 +17,9 @@ const App: React.FC = () => {
       <div className="relative z-10">
         <Header />
         <Introduction />
+        <Timeline />
         <Projects />
+        <Riddles />
         <Resume />
         <AudioPlayer />
       </div>

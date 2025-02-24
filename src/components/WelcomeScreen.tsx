@@ -8,10 +8,10 @@ export default function WelcomeScreen() {
   const [showButton, setShowButton] = useState(false);
   const fullText = '> Hello everyone,\n> And welcome to my dark web site...';
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [, toggleAudio] = useAudio('https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Loyalty_Freak_Music/WITCHY_BATTY_SPOOKY_HALLOWEEN/Loyalty_Freak_Music_-_03_-_CURSED_INTRO.mp3');
+  const [, toggleAudio] = useAudio(); // Shared audio hook
 
   useEffect(() => {
-    const typingSpeed = 100;
+    const typingSpeed = 75;
     let currentChar = 0;
 
     const typingInterval = setInterval(() => {
@@ -35,7 +35,7 @@ export default function WelcomeScreen() {
   }, []);
 
   const handleNext = () => {
-    toggleAudio();
+    toggleAudio(); // Start the music when entering the site
     setIsVisible(false);
   };
 

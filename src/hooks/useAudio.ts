@@ -1,41 +1,38 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export function useAudio(url: string) {
-  const [audio] = useState(new Audio(url));
+const audio = new Audio('/audioFile.mp3'); // Shared audio instance
+
+export function useAudio() {
   const [playing, setPlaying] = useState(false);
 
   const toggle = useCallback(() => {
-    setPlaying(prev => !prev);
-  }, []);
-
-  useEffect(() => {
-    audio.volume = 0.5; // Set initial volume to 50%
-    
-    const handleEnded = () => {
-      audio.currentTime = 0; // Reset to beginning
-      audio.play(); // Auto replay
-    };
-
-    audio.addEventListener('ended', handleEnded);
-
-    return () => {
-      audio.removeEventListener('ended', handleEnded);
-      audio.pause();
-    };
-  }, [audio]);
-
-  useEffect(() => {
-    if (playing) {
-      const playPromise = audio.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          setPlaying(false);
-        });
-      }
+    if (!playing) {
+      audio.currentTime = 55; // Always start at 55 seconds
+      audio.play();
     } else {
       audio.pause();
     }
-  }, [playing, audio]);
+    setPlaying(prev => !prev);
+  }, [playing]);
+
+  useEffect(() => {
+    audio.volume = 0.5; // Set volume to 50%
+
+    const stopAt = 70; // 1 minute 10 seconds
+    const checkTime = () => {
+      if (audio.currentTime >= stopAt) {
+        audio.pause();
+        setPlaying(false);
+      }
+    };
+
+    audio.addEventListener('timeupdate', checkTime);
+
+    return () => {
+      audio.removeEventListener('timeupdate', checkTime);
+      audio.pause();
+    };
+  }, []);
 
   return [playing, toggle] as const;
 }

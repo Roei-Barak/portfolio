@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export function useAudio(url: string, startTime: number = 0) {
+export function useAudio(url, startTime = 0) {
   const [audio] = useState(new Audio(url));
   const [playing, setPlaying] = useState(false);
 
@@ -40,5 +40,5 @@ export function useAudio(url: string, startTime: number = 0) {
     }
   }, [playing, audio]);
 
-  return [playing, toggle] as const;
+  return [playing, toggle];
 }

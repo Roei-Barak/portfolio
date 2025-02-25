@@ -2,8 +2,10 @@ import React from 'react';
 import { Music2, Music } from 'lucide-react';
 import { useAudio } from '../hooks/useAudio';
 
+const AUDIO_URL = 'https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Leonard_Cohen/Im_Your_Man/Leonard_Cohen_-_Im_Your_Man.mp3';
+
 export default function AudioPlayer() {
-  const [playing, toggle] = useAudio(); // Uses shared audio instance
+  const [playing, toggle] = useAudio(AUDIO_URL);
 
   return (
     <button

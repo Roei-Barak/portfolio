@@ -1,12 +1,12 @@
 import React from 'react';
 import { Music2, Music } from 'lucide-react';
-import { useAudio } from '../hooks/useAudio';
 
-const AUDIO_URL = 'audio/audioFile.mp3';
+interface AudioPlayerProps {
+  playing: boolean;
+  toggle: () => void;
+}
 
-export default function AudioPlayer() {
-  const [playing, toggle] = useAudio(AUDIO_URL);
-
+export default function AudioPlayer({ playing, toggle }: AudioPlayerProps) {
   return (
     <button
       onClick={toggle}

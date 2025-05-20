@@ -5,11 +5,8 @@ export function useAudio(url, startTime = 0) {
   const [playing, setPlaying] = useState(false);
 
   const toggle = useCallback(() => {
-    if (!playing) {
-      audio.currentTime = startTime;
-    }
     setPlaying(prev => !prev);
-  }, [audio, startTime, playing]);
+  }, []);
 
   useEffect(() => {
     audio.volume = 0.5; // Set initial volume to 50%
@@ -29,6 +26,7 @@ export function useAudio(url, startTime = 0) {
 
   useEffect(() => {
     if (playing) {
+      audio.currentTime = startTime; // Move to start time on play
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -38,7 +36,7 @@ export function useAudio(url, startTime = 0) {
     } else {
       audio.pause();
     }
-  }, [playing, audio]);
+  }, [playing, audio, startTime]);
 
   return [playing, toggle];
 }

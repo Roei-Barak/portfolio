@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useAudio } from '../hooks/useAudio';
 import { ChevronRight } from 'lucide-react';
 
-export default function WelcomeScreen() {
+interface WelcomeScreenProps {
+  toggleAudio: () => void;
+}
+
+export default function WelcomeScreen({ toggleAudio }: WelcomeScreenProps) {
   const [isVisible, setIsVisible] = useState(true);
   const [text, setText] = useState('');
   const [showButton, setShowButton] = useState(false);
   const fullText = '> Hello everyone,\n> And welcome to my dark web site...';
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [, toggleAudio] = useAudio('audio/audioFile.mp3', 63);
-  
 
   useEffect(() => {
     const typingSpeed = 75;
@@ -49,7 +50,7 @@ export default function WelcomeScreen() {
           {text}
           {cursorVisible && <span className="animate-pulse">█</span>}
         </pre>
-        
+
         {showButton && (
           <button
             onClick={handleNext}

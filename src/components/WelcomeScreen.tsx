@@ -8,7 +8,8 @@ export default function WelcomeScreen() {
   const [showButton, setShowButton] = useState(false);
   const fullText = '> Hello everyone,\n> And welcome to my dark web site...';
   const [cursorVisible, setCursorVisible] = useState(true);
-  const [, toggleAudio] = useAudio('/audioFile.mp3', 63);
+  const [, toggleAudio] = useAudio('audio/audioFile.mp3', 63);
+  
 
   useEffect(() => {
     const typingSpeed = 75;
